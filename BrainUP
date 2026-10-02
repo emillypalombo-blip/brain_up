@@ -1,0 +1,53 @@
+create database if not exists Brain_Up
+default character set utf8mb4
+collate utf8mb4_0900_ai_ci;
+
+use Brain_Up;
+
+create table if not exists estudante (
+  id_estudante int primary key auto_increment,
+  nome varchar(30) not null,
+  data_nascimento date,
+  senha varchar(6),
+  email varchar(30) not null,
+  data_cadastro date,
+  frequencia_estudante boolean
+) character set utf8mb4;
+desc estudante;
+
+insert into estudante
+(nome, data_nascimento, senha, email, data_cadastro, frequencia_estudante)
+values
+('Pietra Rita', '2010/12/09', '090909', 'Petra@gmail.com', '2020/06/01', true),
+('Xavier Viena', '2009/11/23', 'klkalalak', 'Xaxav@gmail.com', '2023/09/09', true),
+('Jucelino Ribeiro', '2008/02/19', 'Baudeabc', 'Vassourinha@gmail.com', '2021/10/01', true),
+('Lana Reis', '2011/04/27', 'goiabafrita', 'DellRey@gmail.com', '2019/03/30', true),
+('Geovane Jamal', '2017/08/09', 'Arabehistorico', 'Ventosopro@gmail.com', '2024/01/17', true),
+('Zeca Pagodinho', '1959/02/04', 'Pagodeomaimais', 'pandeirobonito@gmail.com', '2026/05/05', true);
+select*from estudante;
+
+
+create table if not exists atividade (
+ id_atividade int primary key auto_increment,
+ tempo_inicio datetime,
+ materia varchar(30),
+ nota int,
+ tempo_desejado time,
+ duracao time,
+ nivel_dificuldade enum('fácil','médio','difícil'),
+ status_n enum ('pendente','concluída'),
+ id_estudante int,
+ foreign key (id_estudante) references estudante(id_estudante)
+) character set utf8mb4;
+desc atividade;
+
+insert into atividade
+(tempo_inicio, materia, nota, tempo_desejado, duracao, nivel_dificuldade, status_n, id_estudante)
+values
+('', true),
+('Xavier Viena', '2009/11/23', 'klkalalak', 'Xaxav@gmail.com', '2023/09/09', true),
+('Jucelino Ribeiro', '2008/02/19', 'Baudeabc', 'Vassourinha@gmail.com', '2021/10/01', true),
+('Lana Reis', '2011/04/27', 'goiabafrita', 'DellRey@gmail.com', '2019/03/30', true),
+('Geovane Jamal', '2017/08/09', 'Arabehistorico', 'Ventosopro@gmail.com', '2024/01/17', true),
+('Zeca Pagodinho', '1959/02/04', 'Pagodeomaimais', 'pandeirobonito@gmail.com', '2026/05/05', true);
+select*from estudante;
