@@ -1,53 +1,53 @@
-create database if not exists Brain_Up
-default character set utf8mb4
-collate utf8mb4_0900_ai_ci;
+CREATE DATABASE IF NOT EXISTS Brain_Up 
+DEFAULT CHARACTER SET utf8mb4 
+COLLATE utf8mb4_0900_ai_ci;
 
-use Brain_Up;
+USE Brain_Up;
 
-create table if not exists estudante (
-  id_estudante int primary key auto_increment,
-  nome varchar(30) not null,
-  data_nascimento date,
-  senha varchar(6),
-  email varchar(30) not null,
-  data_cadastro date,
-  frequencia_estudante boolean
-) character set utf8mb4;
-desc estudante;
+CREATE TABLE IF NOT EXISTS estudante (
+    id_estudante INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(50) NOT NULL,
+    data_nascimento DATE,
+    senha VARCHAR(20),             
+    email VARCHAR(50) NOT NULL,  
+    frequencia_estudante BOOLEAN
+) CHARACTER SET utf8mb4;
 
-insert into estudante
-(nome, data_nascimento, senha, email, data_cadastro, frequencia_estudante)
-values
-('Pietra Rita', '2010/12/09', '090909', 'Petra@gmail.com', '2020/06/01', true),
-('Xavier Viena', '2009/11/23', 'klkalalak', 'Xaxav@gmail.com', '2023/09/09', true),
-('Jucelino Ribeiro', '2008/02/19', 'Baudeabc', 'Vassourinha@gmail.com', '2021/10/01', true),
-('Lana Reis', '2011/04/27', 'goiabafrita', 'DellRey@gmail.com', '2019/03/30', true),
-('Geovane Jamal', '2017/08/09', 'Arabehistorico', 'Ventosopro@gmail.com', '2024/01/17', true),
-('Zeca Pagodinho', '1959/02/04', 'Pagodeomaimais', 'pandeirobonito@gmail.com', '2026/05/05', true);
-select*from estudante;
+DESC estudante;
 
 
-create table if not exists atividade (
- id_atividade int primary key auto_increment,
- tempo_inicio datetime,
- materia varchar(30),
- nota int,
- tempo_desejado time,
- duracao time,
- nivel_dificuldade enum('fácil','médio','difícil'),
- status_n enum ('pendente','concluída'),
- id_estudante int,
- foreign key (id_estudante) references estudante(id_estudante)
-) character set utf8mb4;
-desc atividade;
+CREATE TABLE IF NOT EXISTS atividade (
+    id_atividade INT PRIMARY KEY AUTO_INCREMENT,
+    tempo_inicio DATETIME,
+    materia VARCHAR(30),
+    nota INT,
+    tempo_desejado TIME,
+    duracao TIME,
+    nivel_dificuldade ENUM('fácil', 'médio', 'difícil'),
+    status_n ENUM('pendente', 'concluída'),
+    id_estudante INT,
+    FOREIGN KEY (id_estudante) REFERENCES estudante(id_estudante)
+) CHARACTER SET utf8mb4;
 
-insert into atividade
-(tempo_inicio, materia, nota, tempo_desejado, duracao, nivel_dificuldade, status_n, id_estudante)
-values
-('', true),
-('Xavier Viena', '2009/11/23', 'klkalalak', 'Xaxav@gmail.com', '2023/09/09', true),
-('Jucelino Ribeiro', '2008/02/19', 'Baudeabc', 'Vassourinha@gmail.com', '2021/10/01', true),
-('Lana Reis', '2011/04/27', 'goiabafrita', 'DellRey@gmail.com', '2019/03/30', true),
-('Geovane Jamal', '2017/08/09', 'Arabehistorico', 'Ventosopro@gmail.com', '2024/01/17', true),
-('Zeca Pagodinho', '1959/02/04', 'Pagodeomaimais', 'pandeirobonito@gmail.com', '2026/05/05', true);
-select*from estudante;
+DESC atividade;
+
+INSERT INTO estudante (nome, data_nascimento, senha, email, data_cadastro, frequencia_estudante) VALUES 
+('Pietra Rita', '2010-12-09', '090909', 'Petra@gmail.com', '2020-06-01', true),
+('Xavier Viena', '2009-11-23', 'klkalalak', 'Xaxav@gmail.com', '2023-09-09', true),
+('Jucelino Ribeiro', '2008-02-19', 'Baudeabc', 'Vassourinha@gmail.com', '2021-10-01', true),
+('Lana Reis', '2011-04-27', 'goiabafrita', 'DellRey@gmail.com', '2019-03-30', true),
+('Geovane Jamal', '2017-08-09', 'Arabehistorico', 'Ventosopro@gmail.com', '2024-01-17', true),
+('Zeca Pagodinho', '1959-02-04', 'Pagodeomaimais', 'pandeirobonito@gmail.com', '2026-05-05', true);
+
+
+INSERT INTO atividade (tempo_inicio, materia, nota, tempo_desejado, duracao, nivel_dificuldade, status_n, id_estudante) VALUES 
+('2026-10-26 08:00:00', 'Matemática', 9, '01:00:00', '00:55:00', 'médio', 'concluída', 1),
+('2026-10-26 10:30:00', 'História', 8, '02:00:00', '01:40:00', 'fácil', 'concluída', 2),
+('2026-10-26 14:00:00', 'Geografia', NULL, '00:45:00', NULL, 'difícil', 'pendente', 3),
+('2026-10-26 15:30:00', 'Português', 10, '01:30:00', '01:25:00', 'fácil', 'concluída', 4),
+('2026-10-26 17:00:00', 'Física', NULL, '02:00:00', NULL, 'difícil', 'pendente', 5),
+('2026-10-26 19:15:00', 'Química', 7, '01:15:00', '01:20:00', 'médio', 'concluída', 6);
+
+SELECT * FROM estudante;
+
+SELECT * FROM atividade;
